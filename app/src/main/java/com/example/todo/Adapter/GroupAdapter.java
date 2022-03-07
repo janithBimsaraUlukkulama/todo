@@ -12,12 +12,12 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todo.AddNewGroup;
 import com.example.todo.MainActivity;
 import com.example.todo.Model.TodoGroupModel;
 import com.example.todo.R;
 import com.example.todo.Utils.DBHelper;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> {
@@ -26,12 +26,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     private MainActivity activity;
     private DBHelper db;
 
-    //    public GroupAdapter(DBHelper dbHelper, MainActivity mainActivity) {
-//        this.activity = mainActivity;
-//        this.db = dbHelper;
-//    }
-    public GroupAdapter(TodoGroupModel[] groups) {
-        this.groupList = Arrays.asList(groups);
+    public GroupAdapter(DBHelper dbHelper, MainActivity mainActivity) {
+        this.activity = mainActivity;
+        this.db = dbHelper;
     }
 
     @NonNull
@@ -77,15 +74,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public void editGroup(int position) {
         TodoGroupModel item = groupList.get(position);
         Log.d("TAG", "editItem: editGroup");
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("id" , item.getId());
-//        bundle.putString("task" , item.getTask());
-//
-//        AddNewTask task = new AddNewTask();
-//        task.setArguments(bundle);
-//        task.show(activity.getSupportFragmentManager() , task.getTag());
+        Bundle bundle = new Bundle();
+        bundle.putInt("id" , item.getId());
+        bundle.putString("group" , item.getName());
 
-
+        AddNewGroup group = new AddNewGroup();
+        group.setArguments(bundle);
+        group.show(activity.getSupportFragmentManager() , group.getTag());
     }
 
     @Override

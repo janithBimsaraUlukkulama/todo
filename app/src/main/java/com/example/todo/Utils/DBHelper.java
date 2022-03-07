@@ -67,33 +67,33 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(GROUP_TABLE_NAME, "ID=?", new String[]{String.valueOf(id)});
     }
 
-//    @SuppressLint("Range")
-//    public List<TodoGroupModel> getAllGroups(){
-//
-//        db = this.getWritableDatabase();
-//        Cursor cursor = null;
-//        List<TodoGroupModel> groupList = new ArrayList<>();
-//
-//        db.beginTransaction();
-//        try {
-//            cursor = db.query(GROUP_TABLE_NAME , null , null , null , null , null , null);
-//            if (cursor !=null){
-//                if (cursor.moveToFirst()){
-//                    do {
-//                        TodoGroupModel group = new TodoGroupModel();
-//                        group.setId(cursor.getInt(cursor.getColumnIndex(GROUP_COL_1)));
-//                        group.setName(cursor.getString(cursor.getColumnIndex(GROUP_COL_2)));
-//                        group.setStatus(cursor.getInt(cursor.getColumnIndex(GROUP_COL_3)));
-//                        groupList.add(group);
-//
-//                    }while (cursor.moveToNext());
-//                }
-//            }
-//        }finally {
-//            db.endTransaction();
-//            cursor.close();
-//        }
-//        return groupList;
-//    }
+    @SuppressLint("Range")
+    public List<TodoGroupModel> getAllGroups(){
+
+        db = this.getWritableDatabase();
+        Cursor cursor = null;
+        List<TodoGroupModel> groupList = new ArrayList<>();
+
+        db.beginTransaction();
+        try {
+            cursor = db.query(GROUP_TABLE_NAME , null , null , null , null , null , null);
+            if (cursor !=null){
+                if (cursor.moveToFirst()){
+                    do {
+                        TodoGroupModel group = new TodoGroupModel();
+                        group.setId(cursor.getInt(cursor.getColumnIndex(GROUP_COL_1)));
+                        group.setName(cursor.getString(cursor.getColumnIndex(GROUP_COL_2)));
+                        group.setStatus(cursor.getInt(cursor.getColumnIndex(GROUP_COL_3)));
+                        groupList.add(group);
+
+                    }while (cursor.moveToNext());
+                }
+            }
+        }finally {
+            db.endTransaction();
+            cursor.close();
+        }
+        return groupList;
+    }
 
 }

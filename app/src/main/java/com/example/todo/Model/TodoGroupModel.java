@@ -4,12 +4,6 @@ public class TodoGroupModel {
     private String name;
     private int id, status;
 
-    public TodoGroupModel(int i, String group1, int i1) {
-        this.id= i;
-        this.status= i1;
-        this.name = group1;
-    }
-
     public String getName() {
         return name;
     }

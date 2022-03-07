@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="TODOs"
-        android:textColor="#000"
+        android:text="My TODOs"
+        android:textColor="@color/pastel_pink"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/scholarly_ambition_regular"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/todoGroupRecycleView"
@@ -25,12 +27,15 @@
         android:nestedScrollingEnabled="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:id="@+id/fab"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_margin="30dp"/>
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_baseline_add_24" />
 
 </RelativeLayout>
