@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/todoGroupCardCheckBox"
-        android:text="This is Group 1"
-        android:paddingStart="8dp"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/todoGroupCardCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:text="This is Group 1" />
 
     </RelativeLayout>
 
