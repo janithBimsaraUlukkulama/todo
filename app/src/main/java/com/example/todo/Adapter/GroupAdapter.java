@@ -1,6 +1,8 @@
 package com.example.todo.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,11 +40,18 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         return new GroupViewHolder(view);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
-        final TodoGroupModel item = groupList.get(position);
+        TodoGroupModel item = groupList.get(position);
         holder.checkBox.setText(item.getName());
         holder.checkBox.setChecked(toBoolean(item.getStatus()));
+
+        // if status true add decorator to text
+        if (toBoolean(item.getStatus()) == true) {
+            holder.checkBox.setPaintFlags(holder.checkBox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,17 +61,16 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                     db.updateGroupStatus(item.getId(), 0);
             }
         });
+
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // go to next
             }
         });
 
-        holder.checkBox.setOnLongClickListener(new View.OnLongClickListener(){
+        holder.checkBox.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Log.d("TAG", "onLongClick: ----------------------------------------------------------------------------");
                 editGroup(position);
                 return false;
             }
@@ -79,6 +87,18 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         notifyDataSetChanged();
     }
 
+    public void setStatus(int position) {
+        TodoGroupModel item = groupList.get(position);
+
+        if (toBoolean(item.getStatus()) == true) {
+            db.updateGroupStatus(item.getId(), 0);
+        } else {
+            db.updateGroupStatus(item.getId(), 1);
+        }
+
+        notifyDataSetChanged();
+    }
+
     public void deleteGroup(int position) {
         TodoGroupModel item = groupList.get(position);
         db.deleteGroup(item.getId());
@@ -88,14 +108,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
     public void editGroup(int position) {
         TodoGroupModel item = groupList.get(position);
-        Log.d("TAG", "editItem: editGroup");
+
         Bundle bundle = new Bundle();
-        bundle.putInt("id" , item.getId());
-        bundle.putString("group" , item.getName());
+        bundle.putInt("id", item.getId());
+        bundle.putString("group", item.getName());
 
         AddNewGroup group = new AddNewGroup();
         group.setArguments(bundle);
-        group.show(activity.getSupportFragmentManager() , group.getTag());
+        group.show(activity.getSupportFragmentManager(), group.getTag());
     }
 
     @Override

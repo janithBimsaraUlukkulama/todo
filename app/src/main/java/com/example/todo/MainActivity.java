@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.todo.Adapter.GroupAdapter;
 import com.example.todo.Model.TodoGroupModel;
@@ -60,5 +61,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         groupAdapter.setGroup(groupList);
         groupAdapter.notifyDataSetChanged();
     }
+
+
 
 }

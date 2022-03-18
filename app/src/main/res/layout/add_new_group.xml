@@ -20,7 +20,8 @@
         android:id="@+id/groupSaveButton"
         android:textSize="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        />
 
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.todo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -54,7 +55,9 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
             dialog.show();
 
         } else {
-            groupAdapter.editGroup(position);
+            // change group status
+            groupAdapter.setStatus(position);
+
         }
 
     }

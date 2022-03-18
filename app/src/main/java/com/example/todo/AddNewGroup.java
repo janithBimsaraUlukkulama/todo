@@ -73,7 +73,7 @@ public class AddNewGroup extends BottomSheetDialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d(TAG, "onTextChanged: "+s);
+                Log.d(TAG, "onTextChanged: " + s);
                 if (s.toString().equals("")) {
                     saveButton.setEnabled(false);
                     saveButton.setBackgroundColor(Color.GRAY);
@@ -94,17 +94,16 @@ public class AddNewGroup extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = editText.getText().toString();
-                Log.d(TAG, "------------------------------------------------------------------------------------------------------onClick: "+text);
-                if (finalIsUpdate) {
-                    Log.d(TAG, "onClick: ------------------------------------------------------------------------------------------------------finalIsUpdate");
-                    db.updateGroupName(bundle.getInt("id"), text);
-                } else {
-                    Log.d(TAG, "onClick: ------------------------------------------------------------------------------------------------------else finalIsUpdate");
 
+                if (finalIsUpdate) {
+                    db.updateGroupName(bundle.getInt("id"), text);
+
+                } else {
                     TodoGroupModel group = new TodoGroupModel();
                     group.setName(text);
                     group.setStatus(0);
                     db.insertGroup(group);
+
                 }
                 dismiss();
 
@@ -116,8 +115,8 @@ public class AddNewGroup extends BottomSheetDialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
         Activity activity = getActivity();
-        if (activity instanceof DialogCloseListener){
-            ((DialogCloseListener)activity).onDialogClose(dialog);
+        if (activity instanceof DialogCloseListener) {
+            ((DialogCloseListener) activity).onDialogClose(dialog);
         }
     }
 }
