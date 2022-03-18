@@ -52,6 +52,21 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                     db.updateGroupStatus(item.getId(), 0);
             }
         });
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // go to next
+            }
+        });
+
+        holder.checkBox.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d("TAG", "onLongClick: ----------------------------------------------------------------------------");
+                editGroup(position);
+                return false;
+            }
+        });
 
     }
 
