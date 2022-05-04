@@ -1,6 +1,7 @@
 package com.example.todo.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.todo.R;
 import com.example.todo.Utils.DBHelper;
 
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> {
 
@@ -89,14 +91,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
     public void setStatus(int position) {
         TodoGroupModel item = groupList.get(position);
+        int status = toBoolean(item.getStatus()) == true ? 0 : 1;
 
-        if (toBoolean(item.getStatus()) == true) {
-            db.updateGroupStatus(item.getId(), 0);
-        } else {
-            db.updateGroupStatus(item.getId(), 1);
-        }
+        db.updateGroupStatus(item.getId(), status);
+        item.setStatus(status);
+        notifyItemChanged(position);
 
-        notifyDataSetChanged();
     }
 
     public void deleteGroup(int position) {
@@ -116,6 +116,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         AddNewGroup group = new AddNewGroup();
         group.setArguments(bundle);
         group.show(activity.getSupportFragmentManager(), group.getTag());
+
     }
 
     @Override

@@ -12,12 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="My TODOs"
-        android:textColor="@color/pastel_pink"
-        android:textSize="32sp"
-        android:textStyle="bold"
         android:fontFamily="@font/scholarly_ambition_regular"
-        />
+        android:text="@string/my_todos"
+        android:textColor="#F06292"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/todoGroupRecycleView"
@@ -36,6 +35,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/ic_baseline_add_24" />
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_baseline_playlist_add_24"
+        android:tint="@color/pastel_blue" />
 
 </RelativeLayout>

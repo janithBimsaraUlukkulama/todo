@@ -1,6 +1,7 @@
 package com.example.todo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -95,18 +96,26 @@ public class AddNewGroup extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 String text = editText.getText().toString();
 
-                if (finalIsUpdate) {
-                    db.updateGroupName(bundle.getInt("id"), text);
+                if(text.length()==0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("Please Enter Group Name.");
+                    builder.setMessage("Group name cannot be empty.");
+                    builder.setPositiveButton(R.string.validation_ok,null);
+                    builder.show();
 
-                } else {
-                    TodoGroupModel group = new TodoGroupModel();
-                    group.setName(text);
-                    group.setStatus(0);
-                    db.insertGroup(group);
+                }else {
+                    if (finalIsUpdate) {
+                        db.updateGroupName(bundle.getInt("id"), text);
 
+                    } else {
+                        TodoGroupModel group = new TodoGroupModel();
+                        group.setName(text);
+                        group.setStatus(0);
+                        db.insertGroup(group);
+
+                    }
+                    dismiss();
                 }
-                dismiss();
-
             }
         });
     }

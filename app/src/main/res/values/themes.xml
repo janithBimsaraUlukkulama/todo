@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Todo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/pastel_pink</item>
+        <item name="colorPrimary">@color/pastel_red</item>
         <item name="colorPrimaryVariant">@color/pastel_pink</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

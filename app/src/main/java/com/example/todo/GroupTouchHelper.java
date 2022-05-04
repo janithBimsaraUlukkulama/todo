@@ -1,7 +1,10 @@
 package com.example.todo;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.view.ViewGroup;
 
@@ -27,6 +30,7 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
         return false;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
@@ -43,6 +47,7 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
                     groupAdapter.deleteGroup(position);
                 }
             });
+
             // cancel button
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
@@ -57,7 +62,6 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
         } else {
             // change group status
             groupAdapter.setStatus(position);
-
         }
 
     }
@@ -65,9 +69,9 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                .addSwipeLeftBackgroundColor(ContextCompat.getColor(groupAdapter.getContext(), R.color.pastel_white))
+                .addSwipeLeftBackgroundColor(ContextCompat.getColor(groupAdapter.getContext(), R.color.pastel_green))
                 .addSwipeLeftActionIcon(R.drawable.ic_baseline_done_all_24)
-                .addSwipeRightBackgroundColor(ContextCompat.getColor(groupAdapter.getContext(), R.color.pastel_white))
+                .addSwipeRightBackgroundColor(ContextCompat.getColor(groupAdapter.getContext(), R.color.pastel_red))
                 .addSwipeRightActionIcon(R.drawable.ic_baseline_delete_24)
                 .create()
                 .decorate();

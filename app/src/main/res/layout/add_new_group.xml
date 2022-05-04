@@ -12,16 +12,17 @@
         android:paddingEnd="7dp"/>
 
     <Button
+        android:id="@+id/groupSaveButton"
+        android:backgroundTint="@color/pastel_light_blue"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_below="@id/groupEditText"
-        android:text="Save"
         android:layout_alignParentEnd="true"
-        android:id="@+id/groupSaveButton"
-        android:textSize="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        />
+        android:text="Save"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>
