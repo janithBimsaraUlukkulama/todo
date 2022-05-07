@@ -24,10 +24,13 @@ import com.example.todo.Model.TodoGroupModel;
 import com.example.todo.R;
 import com.example.todo.Utils.DBHelper;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> {
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> implements Serializable {
 
     private List<TodoGroupModel> groupList;
     private MainActivity activity;
@@ -58,22 +61,24 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
             holder.checkBox.setPaintFlags(holder.checkBox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    db.updateGroupStatus(item.getId(), 1);
-                } else
-                    db.updateGroupStatus(item.getId(), 0);
-            }
-        });
+//        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    db.updateGroupStatus(item.getId(), 1);
+//                } else
+//                    db.updateGroupStatus(item.getId(), 0);
+//            }
+//        });
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(Tag, "onClick: ");
+
+                Log.d(Tag, "onClick:///////////////////////// ");
                 Intent intent = new Intent(getContext(), com.example.todo.anjalee.MainActivity.class);
-                intent.putExtra("group",position);
+                intent.putExtra("GROUP_NAME", item.getName());
+                intent.putExtra("GROUP_ID", item.getId());
 
                 getContext().startActivity(intent);
             }

@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MAD/app/src/main/res/drawable-v24/anjalee_ic_baseline_add_24.xml" value="0.36" />
+        <entry key="..\:/MAD/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2395" />
         <entry key="..\:/MAD/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.305" />
         <entry key="..\:/MAD/app/src/main/res/drawable/ic_baseline_done_all_24.xml" value="0.305" />
+        <entry key="..\:/MAD/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.2395" />
         <entry key="..\:/MAD/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/MAD/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/MAD/app/src/main/res/layout/add_new_group.xml" value="0.36666666666666664" />
         <entry key="..\:/MAD/app/src/main/res/layout/anjalee_activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/MAD/app/src/main/res/layout/anjalee_activity_splash.xml" value="0.18802083333333333" />
+        <entry key="..\:/MAD/app/src/main/res/layout/anjalee_new_task.xml" value="0.36666666666666664" />
         <entry key="..\:/MAD/app/src/main/res/layout/group_layout.xml" value="0.33" />
       </map>
     </option>

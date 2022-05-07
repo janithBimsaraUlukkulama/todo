@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
+    private static int groupId;
 
     private static final String DB_NAME = "todo_db";
     private static final String GROUP_TABLE_NAME = "group_table";
@@ -29,13 +31,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String ID = "id";
     private static final String TASK = "task";
     private static final String STATUS = "status";
+    private static final String GROUP_ID = "group_id";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, "
-            + STATUS + " INTEGER)";
+            + STATUS + " INTEGER, "+ GROUP_ID+" INTEGER )";
     //    anjalee --------------
 
 
     public DBHelper(@Nullable Context context) {
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 7);
     }
 
     @Override
@@ -59,8 +62,8 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-//    public void openDatabase() {
-//        db = this.getWritableDatabase();
+//    public void setGroupId(int groupId){
+//        this.groupId = groupId;
 //    }
 
     public void insertGroup(TodoGroupModel group) {
@@ -125,19 +128,22 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insertTask(ToDoModel task){
+        Log.d("TAG", "insertTask: **********************************************************"+groupId);
         ContentValues cv = new ContentValues();
         cv.put(TASK, task.getTask());
         cv.put(STATUS, 0);
+        cv.put(GROUP_ID,groupId);
         db.insert(TODO_TABLE, null, cv);
     }
 
     @SuppressLint("Range")
-    public List<ToDoModel> getAllTasks(){
+    public List<ToDoModel> getAllTasks(int id){
+        this.groupId = id;
         List<ToDoModel> taskList = new ArrayList<>();
         Cursor cur = null;
         db.beginTransaction();
         try{
-            cur = db.query(TODO_TABLE, null, null, null, null, null, null, null);
+            cur = db.query(TODO_TABLE, null, "group_id="+id,null, null, null, null, null);
             if(cur != null){
                 if(cur.moveToFirst()){
                     do{

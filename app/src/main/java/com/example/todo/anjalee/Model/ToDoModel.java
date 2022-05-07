@@ -1,7 +1,7 @@
 package com.example.todo.anjalee.Model;
 
 public class ToDoModel {
-    private int id, status;
+    private int id, status, groupId;
     private String task;
 
     public int getId() {

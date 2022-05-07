@@ -8,11 +8,11 @@
         android:id="@+id/tasksText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/scholarly_ambition_regular"
         android:text="@string/tasks"
-        android:textColor="@android:color/black"
+        android:textColor="#F06292"
         android:textSize="32sp"
         android:textStyle="bold" />
 

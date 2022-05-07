@@ -23,14 +23,12 @@ import com.example.todo.Utils.DBHelper;
 import com.example.todo.anjalee.Model.ToDoModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-//import net.penguincoders.doit.Model.ToDoModel;
-//import net.penguincoders.doit.Utils.DatabaseHandler;
-
 import java.util.Objects;
 
 public class AddNewTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
+    public static final String a = "ActionBottomDialog";
     private EditText newTaskText;
     private Button newTaskSaveButton;
 
