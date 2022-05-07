@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todo.R;
 import com.example.todo.anjalee.Adapters.ToDoAdapter;
 
-//import net.penguincoders.doit.Adapters.ToDoAdapter;
-
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     private ToDoAdapter adapter;

@@ -3,7 +3,9 @@ package com.example.todo.Adapter;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todo.AddNewGroup;
@@ -29,6 +32,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     private List<TodoGroupModel> groupList;
     private MainActivity activity;
     private DBHelper db;
+    String Tag = "Group Adapter";
 
     public GroupAdapter(DBHelper dbHelper, MainActivity mainActivity) {
         this.activity = mainActivity;
@@ -67,6 +71,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(Tag, "onClick: ");
+                Intent intent = new Intent(getContext(), com.example.todo.anjalee.MainActivity.class);
+                intent.putExtra("group",position);
+
+                getContext().startActivity(intent);
             }
         });
 

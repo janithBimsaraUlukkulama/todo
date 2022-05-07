@@ -61,5 +61,4 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         groupAdapter.setGroup(groupList);
         groupAdapter.notifyDataSetChanged();
     }
-
 }
