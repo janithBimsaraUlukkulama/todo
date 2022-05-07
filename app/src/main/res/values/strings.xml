@@ -2,4 +2,9 @@
     <string name="app_name">todo</string>
     <string name="my_todos">My TODOs</string>
     <string name="validation_ok">Ok</string>
+
+    <!--    anjalee-->
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">To Do Tasks</string>
 </resources>

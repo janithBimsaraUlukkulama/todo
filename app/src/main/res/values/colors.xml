@@ -19,4 +19,10 @@
     <color name="pastel_yellow">#FDFD96</color>
     <color name="pastel_purple">#C3B1E1</color>
 
+
+    <!--    anjalee-->
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">@android:color/holo_green_dark</color>
+    <color name="colorAccent">#000000</color>
+
 </resources>
