@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.todo.Adapter.GroupAdapter;
 import com.example.todo.Model.TodoGroupModel;
 import com.example.todo.Utils.DBHelper;
+import com.example.todo.Utils.PrecentageCalculator;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -52,10 +54,27 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new GroupTouchHelper(groupAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        setProgress();
+
+    }
+
+    public void setProgress(){
+        TextView gPrecrnt = findViewById(R.id.groupCompletePreText);
+        TextView tPrecrnt = findViewById(R.id.taskCompletePreText);
+
+        PrecentageCalculator precentageCalculator = new PrecentageCalculator();
+
+        double groupP = precentageCalculator.getPrsentages(1,4);
+        double taskP = precentageCalculator.getPrsentages(10,30);
+
+        gPrecrnt.setText(String.valueOf(groupP)+'%');
+        tPrecrnt.setText(String.valueOf(taskP)+'%');
     }
 
     @Override
     public void onDialogClose(DialogInterface dialogInterface) {
+        setProgress();
         groupList = dbHelper.getAllGroups();
         Collections.reverse(groupList);
         groupAdapter.setGroup(groupList);

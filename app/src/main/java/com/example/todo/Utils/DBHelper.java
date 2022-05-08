@@ -95,7 +95,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public List<TodoGroupModel> getAllGroups() {
-
         db = this.getWritableDatabase();
         Cursor cursor = null;
         List<TodoGroupModel> groupList = new ArrayList<>();
@@ -128,7 +127,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insertTask(ToDoModel task){
-        Log.d("TAG", "insertTask: **********************************************************"+groupId);
         ContentValues cv = new ContentValues();
         cv.put(TASK, task.getTask());
         cv.put(STATUS, 0);

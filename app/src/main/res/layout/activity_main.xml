@@ -25,6 +25,88 @@
         android:layout_below="@+id/mainLabel"
         android:nestedScrollingEnabled="true" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/todoGroupRecycleView"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/pastel_purple"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/scholarly_ambition_regular"
+            android:text="Progress"
+            android:textAlignment="center"
+            android:textColor="@color/pastel_lavender_purple"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/groupCompleteTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressText">
+
+            <TextView
+                android:id="@+id/groupCompleteText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Group Complete Percentage"
+                android:textStyle="bold" />
+            />
+
+            <TextView
+                android:id="@+id/groupCompletePreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/groupCompleteText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="25%"
+                android:textStyle="bold" />
+            />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/taskCompleteTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/groupCompleteTextLayout"
+            android:layout_marginTop="15dp"
+            >
+
+            <TextView
+                android:id="@+id/taskCompleteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Task Complete Percentage"
+                android:textStyle="bold" />
+            />
+
+            <TextView
+                android:id="@+id/taskCompletePreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/taskCompleteText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="25%"
+                android:textStyle="bold" />
+            />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -38,5 +120,6 @@
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_baseline_playlist_add_24"
         android:tint="@color/pastel_blue" />
+
 
 </RelativeLayout>

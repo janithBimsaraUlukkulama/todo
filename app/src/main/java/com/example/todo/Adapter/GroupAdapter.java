@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -61,21 +62,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
             holder.checkBox.setPaintFlags(holder.checkBox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
-//        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    db.updateGroupStatus(item.getId(), 1);
-//                } else
-//                    db.updateGroupStatus(item.getId(), 0);
-//            }
-//        });
-
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Log.d(Tag, "onClick:///////////////////////// ");
                 Intent intent = new Intent(getContext(), com.example.todo.anjalee.MainActivity.class);
                 intent.putExtra("GROUP_NAME", item.getName());
                 intent.putExtra("GROUP_ID", item.getId());
@@ -110,7 +99,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         db.updateGroupStatus(item.getId(), status);
         item.setStatus(status);
         notifyItemChanged(position);
-
     }
 
     public void deleteGroup(int position) {
