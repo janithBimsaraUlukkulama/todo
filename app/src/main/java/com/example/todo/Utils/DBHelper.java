@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.todo.MainActivity;
 import com.example.todo.Model.TodoGroupModel;
 import com.example.todo.anjalee.Model.ToDoModel;
 
@@ -33,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String STATUS = "status";
     private static final String GROUP_ID = "group_id";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, "
-            + STATUS + " INTEGER, "+ GROUP_ID+" INTEGER )";
+            + STATUS + " INTEGER, " + GROUP_ID + " INTEGER )";
     //    anjalee --------------
 
 
@@ -121,41 +122,70 @@ public class DBHelper extends SQLiteOpenHelper {
         return groupList;
     }
 
-    //    anjalee --------------
+    public int getNumberOfGroupsOrTasks(String type) {
+        String table = type == "GROUP" ? GROUP_TABLE_NAME : TODO_TABLE;
+
+        int numberOfGroupOrTask= 0;
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(id) AS count FROM " + table, null);
+
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                numberOfGroupOrTask = cursor.getInt(0);
+            }}
+
+        return numberOfGroupOrTask;
+    }
+
+    public int getNumberOfCompletedGroupsOrTasks(String type) {
+        String table = type == "GROUP" ? GROUP_TABLE_NAME : TODO_TABLE;
+
+        int numberOfGroupsCompleted = 0;
+        Cursor cursor = db.rawQuery("SELECT COUNT(" + GROUP_COL_1 + ") AS numberOfGroupsCompleted FROM " + table + " WHERE status = 1;", null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                numberOfGroupsCompleted = cursor.getInt(0);
+            }}
+
+        return numberOfGroupsCompleted;
+    }
+
+    // anjalee --------------
     public void openDatabase() {
         db = this.getWritableDatabase();
     }
 
-    public void insertTask(ToDoModel task){
+    public void insertTask(ToDoModel task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task.getTask());
         cv.put(STATUS, 0);
-        cv.put(GROUP_ID,groupId);
+        cv.put(GROUP_ID, groupId);
         db.insert(TODO_TABLE, null, cv);
     }
 
     @SuppressLint("Range")
-    public List<ToDoModel> getAllTasks(int id){
+    public List<ToDoModel> getAllTasks(int id) {
         this.groupId = id;
         List<ToDoModel> taskList = new ArrayList<>();
         Cursor cur = null;
         db.beginTransaction();
-        try{
-            cur = db.query(TODO_TABLE, null, "group_id="+id,null, null, null, null, null);
-            if(cur != null){
-                if(cur.moveToFirst()){
-                    do{
+        try {
+            cur = db.query(TODO_TABLE, null, "group_id=" + id, null, null, null, null, null);
+            if (cur != null) {
+                if (cur.moveToFirst()) {
+                    do {
                         ToDoModel task = new ToDoModel();
                         task.setId(cur.getInt(cur.getColumnIndex(ID)));
                         task.setTask(cur.getString(cur.getColumnIndex(TASK)));
                         task.setStatus(cur.getInt(cur.getColumnIndex(STATUS)));
                         taskList.add(task);
                     }
-                    while(cur.moveToNext());
+                    while (cur.moveToNext());
                 }
             }
-        }
-        finally {
+        } finally {
             db.endTransaction();
             assert cur != null;
             cur.close();
@@ -163,25 +193,23 @@ public class DBHelper extends SQLiteOpenHelper {
         return taskList;
     }
 
-    public void updateStatus(int id, int status){
+    public void updateStatus(int id, int status) {
         ContentValues cv = new ContentValues();
         cv.put(STATUS, status);
-        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
+        db.update(TODO_TABLE, cv, ID + "= ?", new String[]{String.valueOf(id)});
     }
 
     public void updateTask(int id, String task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);
-        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
+        db.update(TODO_TABLE, cv, ID + "= ?", new String[]{String.valueOf(id)});
     }
 
-    public void deleteTask(int id){
-        db.delete(TODO_TABLE, ID + "= ?", new String[] {String.valueOf(id)});
+    public void deleteTask(int id) {
+        db.delete(TODO_TABLE, ID + "= ?", new String[]{String.valueOf(id)});
     }
 
     //    anjalee --------------
-
-
 
 
 }

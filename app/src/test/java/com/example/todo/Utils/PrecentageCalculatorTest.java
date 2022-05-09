@@ -15,6 +15,20 @@ class PrecentageCalculatorTest {
         PrecentageCalculator precentageCalculator = new PrecentageCalculator();
         double output = precentageCalculator.getPrsentages(completed, all);
 
-        assertEquals(expected,output);
+        assertEquals(expected, output);
     }
+
+    //    all 0
+    @Test
+    void getPrsentagesAllZero() {
+        int completed = 0;
+        int all = 0;
+        double expected = 0;
+
+        PrecentageCalculator precentageCalculator = new PrecentageCalculator();
+        double output = precentageCalculator.getPrsentages(completed, all);
+
+        assertEquals(expected, output);
+    }
+
 }

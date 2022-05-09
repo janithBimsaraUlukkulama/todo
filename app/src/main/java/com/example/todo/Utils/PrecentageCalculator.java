@@ -12,7 +12,10 @@ public class PrecentageCalculator {
     public double getPrsentages(int completed, int all) {
         this.comAmount = completed;
         this.allAmount = all;
-        precent =(comAmount / allAmount) * 100;
+        precent = (comAmount / allAmount) * 100;
+
+        precent = precent > 0 ? precent : 0;
+        
         return (Double.parseDouble(df.format(precent)));
 
     }

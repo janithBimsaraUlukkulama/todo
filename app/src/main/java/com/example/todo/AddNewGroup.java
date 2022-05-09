@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,14 +56,12 @@ public class AddNewGroup extends BottomSheetDialogFragment {
         final Bundle bundle = getArguments();
         if (bundle != null) {
             isUpdate = true;
-            Log.d(TAG, "onViewCreated: ----------------------------------------------57");
             String group = bundle.getString("group");
             editText.setText(group);
 
             if (group.length() > 0) {
-                Log.d(TAG, "onViewCreated: ----------------------------------------------62");
-
                 saveButton.setEnabled(false);
+
             }
         }
 
@@ -74,7 +73,6 @@ public class AddNewGroup extends BottomSheetDialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d(TAG, "onTextChanged: " + s);
                 if (s.toString().equals("")) {
                     saveButton.setEnabled(false);
                     saveButton.setBackgroundColor(Color.GRAY);
@@ -107,11 +105,15 @@ public class AddNewGroup extends BottomSheetDialogFragment {
                     if (finalIsUpdate) {
                         db.updateGroupName(bundle.getInt("id"), text);
 
+                        Toast.makeText(getActivity(), "Group Name Updated Successfully.", Toast.LENGTH_SHORT).show();
+
                     } else {
                         TodoGroupModel group = new TodoGroupModel();
                         group.setName(text);
                         group.setStatus(0);
                         db.insertGroup(group);
+
+                        Toast.makeText(getActivity(), "New Group Added Successfully.", Toast.LENGTH_SHORT).show();
 
                     }
                     dismiss();

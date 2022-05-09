@@ -63,7 +63,6 @@ public class GroupTouchHelper extends ItemTouchHelper.SimpleCallback {
             // change group status
             groupAdapter.setStatus(position);
         }
-
     }
 
 

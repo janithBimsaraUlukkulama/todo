@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.todo.Adapter.GroupAdapter;
@@ -56,20 +55,30 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         setProgress();
-
     }
 
-    public void setProgress(){
+    public void setProgress() {
         TextView gPrecrnt = findViewById(R.id.groupCompletePreText);
         TextView tPrecrnt = findViewById(R.id.taskCompletePreText);
 
         PrecentageCalculator precentageCalculator = new PrecentageCalculator();
 
-        double groupP = precentageCalculator.getPrsentages(1,4);
-        double taskP = precentageCalculator.getPrsentages(10,30);
+        int allGroups = dbHelper.getNumberOfGroupsOrTasks("GROUP");
+        int completedGroups = dbHelper.getNumberOfCompletedGroupsOrTasks("GROUP");
+        int allTasks = dbHelper.getNumberOfCompletedGroupsOrTasks("TASK");
+        int completedTasks = dbHelper.getNumberOfCompletedGroupsOrTasks("TASK");
 
-        gPrecrnt.setText(String.valueOf(groupP)+'%');
-        tPrecrnt.setText(String.valueOf(taskP)+'%');
+        double groupP = precentageCalculator.getPrsentages(completedGroups, allGroups);
+        double taskP = precentageCalculator.getPrsentages(completedTasks, allTasks);
+
+        gPrecrnt.setText(String.valueOf(groupP) + '%');
+        tPrecrnt.setText(String.valueOf(taskP) + '%');
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setProgress();
     }
 
     @Override

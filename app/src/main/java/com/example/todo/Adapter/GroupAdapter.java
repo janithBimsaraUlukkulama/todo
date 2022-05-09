@@ -90,6 +90,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public void setGroup(List<TodoGroupModel> list) {
         this.groupList = list;
         notifyDataSetChanged();
+
     }
 
     public void setStatus(int position) {
@@ -99,6 +100,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         db.updateGroupStatus(item.getId(), status);
         item.setStatus(status);
         notifyItemChanged(position);
+
+        MainActivity mainActivity =new MainActivity();
+        mainActivity.setProgress();
     }
 
     public void deleteGroup(int position) {
